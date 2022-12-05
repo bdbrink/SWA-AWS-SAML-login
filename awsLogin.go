@@ -11,8 +11,6 @@ import (
 	"github.com/urfave/cli"
 )
 
-// need name, role, e/xid
-
 func main() {
 
 	app := cli.NewApp()
@@ -33,6 +31,12 @@ func main() {
 					Usage: "login with name setup when awssaml was configured, run awssaml list to see your configuration",
 				},
 			},
+		},
+		{
+			Name:     "list",
+			HelpName: "list",
+			Action:   listRoles,
+			Usage:    `list all the roles you can log into for AwsLogin command.`,
 		},
 	}
 
@@ -63,7 +67,7 @@ func AwsLogin(c *cli.Context) error {
 				role = "swa/SWACSDeveloper"
 			}
 
-			if c.String("name") == "labOp" {
+			if c.String("name") == "labOps" {
 				role = "swa/SWACSOperations"
 			}
 		}
@@ -104,8 +108,10 @@ func AwsLogin(c *cli.Context) error {
 			}
 		}
 
+		// format command
 		awsSamlLogin := fmt.Sprintf("awssaml get-credentials --account-id %v --name %v --role %v --user-name e143608 --duration 14400", accountID, c.String("name"), role)
 
+		// execute command, inputs will be prompted, outputs will return as well as any errors
 		cmd := exec.Command("bash", "-c", awsSamlLogin)
 		cmd.Stdin = os.Stdin
 		cmd.Stdout = os.Stdout
@@ -113,6 +119,16 @@ func AwsLogin(c *cli.Context) error {
 		_ = cmd.Run()
 	}
 
-	fmt.Println("Logged into AWS")
+	return nil
+}
+
+func listRoles(c *cli.Context) error {
+
+	cmd := exec.Command("bash", "-c", "awssaml list")
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	_ = cmd.Run()
+
 	return nil
 }
