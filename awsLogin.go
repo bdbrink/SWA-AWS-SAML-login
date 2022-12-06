@@ -82,6 +82,10 @@ func AwsLogin(c *cli.Context) error {
 			if c.String("name") == "dev" {
 				role = "swa/SWACSOperations"
 			}
+
+			if c.String("name") == "devBG" {
+				role = "swa/SWACSBreakGlassAdmin"
+			}
 		}
 
 		if strings.HasPrefix(c.String("name"), "qa") {
@@ -94,6 +98,10 @@ func AwsLogin(c *cli.Context) error {
 			if c.String("name") == "qaOp" {
 				role = "swa/SWACSOperations"
 			}
+
+			if c.String("name") == "qaBG" {
+				role = "swa/SWACSBreakGlassAdmin"
+			}
 		}
 
 		if strings.HasPrefix(c.String("name"), "prod") {
@@ -105,6 +113,10 @@ func AwsLogin(c *cli.Context) error {
 
 			if c.String("name") == "ProdOps" {
 				role = "swa/SWACSOperations"
+			}
+
+			if c.String("name") == "prodBG" {
+				role = "swa/SWACSBreakGlassAdmin"
 			}
 		}
 
