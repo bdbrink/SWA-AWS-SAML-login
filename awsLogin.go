@@ -62,7 +62,7 @@ func AwsLogin(c *cli.Context) error {
 		fmt.Printf("logging in with %v", c.String("name"))
 
 		if strings.HasPrefix(c.String("name"), "lab") || strings.HasPrefix(c.String("name"), "Lab") {
-			accountID = "217906394988"
+			accountID = "433838799813"
 			if c.String("name") == "lab" {
 				role = "swa/SWACSDeveloper"
 			}
@@ -70,26 +70,30 @@ func AwsLogin(c *cli.Context) error {
 			if c.String("name") == "labOps" {
 				role = "swa/SWACSOperations"
 			}
+
+			if c.String("name") == "labBg" {
+				role = "swa/SWACSBreakGlassAdmin"
+			}
 		}
 
 		if strings.HasPrefix(c.String("name"), "dev") || strings.HasPrefix(c.String("name"), "Dev") {
-			accountID = "988101568216"
+			accountID = "581854693576"
 
-			if c.String("name") == "devDev" {
+			if c.String("name") == "dev" {
 				role = "swa/SWACSDeveloper"
 			}
 
-			if c.String("name") == "dev" {
+			if c.String("name") == "devOps" {
 				role = "swa/SWACSOperations"
 			}
 
-			if c.String("name") == "devBG" {
+			if c.String("name") == "devBg" {
 				role = "swa/SWACSBreakGlassAdmin"
 			}
 		}
 
 		if strings.HasPrefix(c.String("name"), "qa") || strings.HasPrefix(c.String("name"), "Qa") {
-			accountID = "042808334126"
+			accountID = "550460604145"
 
 			if c.String("name") == "qa" {
 				role = "swa/SWACSDeveloper"
@@ -99,13 +103,13 @@ func AwsLogin(c *cli.Context) error {
 				role = "swa/SWACSOperations"
 			}
 
-			if c.String("name") == "qaBG" {
+			if c.String("name") == "qaBg" {
 				role = "swa/SWACSBreakGlassAdmin"
 			}
 		}
 
 		if strings.HasPrefix(c.String("name"), "prod") || strings.HasPrefix(c.String("name"), "Prod") {
-			accountID = "707239158216"
+			accountID = "436431778785"
 
 			if c.String("name") == "prod" {
 				role = "swa/SWACSDeveloper"
@@ -115,7 +119,7 @@ func AwsLogin(c *cli.Context) error {
 				role = "swa/SWACSOperations"
 			}
 
-			if c.String("name") == "prodBG" {
+			if c.String("name") == "prodBg" {
 				role = "swa/SWACSBreakGlassAdmin"
 			}
 		}
